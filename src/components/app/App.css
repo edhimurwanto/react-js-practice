@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.card{
+  margin: 10px;
+  display: inline-block;
+  width: 200px;
+  height:200px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  box-shadow: 10px 10px #cccccc;
+  flex-direction: space;
+
+}
