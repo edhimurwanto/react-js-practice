@@ -41,7 +41,7 @@ function App() {
     setTheme(theme.mode === 'dark' ? { mode: 'light' } : { mode: 'dark' });
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (payload) => {
     handleClose();
   }
   return (

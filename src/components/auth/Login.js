@@ -10,6 +10,23 @@ const chekbox = (<Checkbox
 
 class Login extends Component {
 
+    state = {
+        email: '',
+        password: '',
+        error: false,
+        disabled: true
+    }
+
+    handleChangeEmail = (e) => {
+        console.log(e.target.value);
+        
+        if (e.target.value === "") {
+            this.setState({ error: true });
+        } else {
+            this.setState({ email: e.target.value, error: false, disabled: false });
+        }
+    }
+
     render() {
 
         const { handleSubmit } = this.props;
@@ -20,12 +37,17 @@ class Login extends Component {
                     <CardContent className="form-login">
                         <FormControl fullWidth style={{ marginTop: 20 }}>
                             <InputLabel htmlFor="my-input">Username</InputLabel>
-                            <Input id="my-input" aria-describedby="my-helper-text" placeholder="Enter your username" />
+                            <Input
+                                error={this.state.error}
+                                id="my-input"
+                                aria-describedby="my-helper-text"
+                                placeholder="Enter your username"
+                                onChange={this.handleChangeEmail} />
                             <FormHelperText id="my-helper-text">Your username.</FormHelperText>
                         </FormControl>
                         <FormControl fullWidth style={{ marginTop: 20 }}>
                             <InputLabel htmlFor="my-input">Password</InputLabel>
-                            <Input id="my-input" aria-describedby="my-helper-text" placeholder="Enter your password" />
+                            <Input id="my-input" type="password" aria-describedby="my-helper-text" placeholder="Enter your password" />
                             <FormHelperText id="my-helper-text">Your password.</FormHelperText>
                         </FormControl>
                         <FormControlLabel
@@ -40,7 +62,8 @@ class Login extends Component {
                             color="primary"
                             fullWidth
                             style={{ padding: 15, marginTop: 30 }}
-                            onClick={handleSubmit}
+                            disabled={this.state.disabled}
+                            onClick={() => handleSubmit(this.state)}
                         >
                             Sign in
                         </Button>
