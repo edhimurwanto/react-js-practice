@@ -1,9 +1,11 @@
 import React from 'react';
-import AppBarWithSearchPrimary from '../header/AppBarWithSearchPrimary';
-import Login from '../auth/Login';
+import AppBarWithSearchPrimary from '../shared/app-bar-with-search-primary';
+import Login from '../auth/components/form-login';
 import { Modal, Fade, Backdrop } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import EmployeeContainer from '../employees/employee-container/employee-container';
+import FormLoginTwo from '../auth/components/form-login-two';
 
 const GlobalState = createGlobalStyle`{
   body {
@@ -25,6 +27,8 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
 
+  console.warn = () => {}
+  
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [theme, setTheme] = React.useState({ mode: 'light' })
@@ -42,6 +46,8 @@ function App() {
   }
 
   const handleSubmit = (payload) => {
+    console.log(payload);
+
     handleClose();
   }
   return (
@@ -65,10 +71,12 @@ function App() {
 
             <Fade in={open}>
               <div className={classes.paper}>
-                <Login handleSubmit={handleSubmit}/>
+                <Login handleSubmit={handleSubmit} />
               </div>
             </Fade>
           </Modal>
+          <EmployeeContainer />
+          {/* <FormLoginTwo/> */}
         </div>
       </>
     </ThemeProvider>
