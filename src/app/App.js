@@ -4,8 +4,8 @@ import Login from '../auth/components/form-login';
 import { Modal, Fade, Backdrop } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import EmployeeContainer from '../employees/employee-container/employee-container';
-import FormLoginTwo from '../auth/components/form-login-two';
+import Slider from '../shared/slider/slider';
+import images from '../shared/slider/images/images';
 
 const GlobalState = createGlobalStyle`{
   body {
@@ -20,15 +20,12 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  paper: {
-    border: '2px solid #000',
-  },
 }));
 
 function App() {
 
-  console.warn = () => {}
-  
+  console.warn = () => { }
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [theme, setTheme] = React.useState({ mode: 'light' })
@@ -64,19 +61,16 @@ function App() {
             onClose={handleClose}
             closeAfterTransition
             BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
+            BackdropProps={{ timeout: 500 }}
           >
 
             <Fade in={open}>
-              <div className={classes.paper}>
-                <Login handleSubmit={handleSubmit} />
+              <div>
+                <Login handleSubmit={handleSubmit} handleClose={handleClose} />
               </div>
             </Fade>
           </Modal>
-          <EmployeeContainer />
-          {/* <FormLoginTwo/> */}
+          <Slider slides={images} autoPlay={2} />
         </div>
       </>
     </ThemeProvider>
